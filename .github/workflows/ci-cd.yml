@@ -26,8 +26,8 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           push: true
-          # Menggunakan fungsi toLower di sini
-          tags: ${{ env.REGISTRY }}/${{ toLower(github.repository) }}:latest
+          # Ganti dengan nama repositori kamu dalam huruf kecil
+          tags: ${{ env.REGISTRY }}/sidiqmuhammadtoha24/hello-world:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
             cd /home/sidiq_muhamadtoha/dev-ops-learning/hello-world
             echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             
-            # Menggunakan toLower di sini juga
-            docker compose pull ghcr.io/${{ toLower(github.repository) }}:latest
+            # Ganti dengan nama repositori kamu dalam huruf kecil
+            docker compose pull sidiqmuhammadtoha24/hello-world:latest
             docker compose up -d
             docker image prune -f
